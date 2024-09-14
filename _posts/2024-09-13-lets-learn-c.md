@@ -10,9 +10,8 @@ C, is a general purpose programming langauge. What makes C unique is that it is 
 I am currently learning C due to it's high use cases within reverse engineering. Since C has a close correlation to Assembly I can begin to learn various memory manipulation techniques and better understand how a program can directly interact with hardware.
 
 Below you can follow the notes I have taken on C while following **learn-c.org**'s tutorial series. I hope these notes can benefit you as well in your programming journey. Whether you are new to C just like me or an experienced programmer!
-
+\
 ## The Basics of C
------
 ### File structure basics
 Every C program uses libraries, which give the ability to execute necessary functions. One of the most common functions you'll see is `printf`. This function prints text to the screen and required the `stdio.h` header file to run.
 
@@ -34,9 +33,8 @@ It's important that we include the `int` type infront of our main function. This
 ```
 return 0;
 ```
-
+\
 ## Variables and Types
------
 ### Data Types
 C has several types of variables, below are a few types of variables you may commonly see:
 - Integers - Whole numbers which can be either positive or negative. `char`, `int`, `short`, `long`, `long long`.
@@ -52,7 +50,7 @@ C does **not** have a boolean type. Usually, it is defined using the following n
 #define FALSE 0
 #define TRUE 1
 ```
-
+\
 ### Defining Variables
 To define variables such as `nito` and `tech`, you would use the following syntax:
 ```
@@ -77,9 +75,8 @@ int main() {
   return 0;
 }
 ```
-
+\
 ## Arrays
------
 Arrays are special variables which hold more than one value under the same variable name.
 Defined using the syntax below, arrays are accessed by what's known as an **index**.
 ```
@@ -118,6 +115,5 @@ int a[2][4] = {
 };
 ```
 If you then needed to access or edit one of these values you would go to the corresponding row and column like `a[0][3]` which would access the first row last column. Remember that when you use indexs the final index is less than the total size of the array.
-
+\
 ## Conditions
------
