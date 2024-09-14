@@ -9,7 +9,7 @@ C, is a general purpose programming langauge. What makes C unique is that it is 
 ### Why am I learning C?
 I am currently learning C due to it's high use cases within reverse engineering. Since C has a close correlation to Assembly I can begin to learn various memory manipulation techniques and better understand how a program can directly interact with hardware.
 
-Below you can follow the notes I have taken on C while following **learn-c.org**'s tutorial series. I hope these notes can benefit you as well in your programming journey. Whether you are new to C just like me or an experienced programmer!
+Below you can follow the notes I have taken on C while following [**learn-c.org**](https://learn-c.org)'s tutorial series. I hope these notes can benefit you as well in your programming journey. Whether you are new to C just like me or an experienced programmer!
 
 ## The Basics of C
 ### File structure basics
@@ -143,6 +143,7 @@ if (number == 9) {
 } else {
   printf("The number is neither 9 or 11");
 }
+```
 Finally we can also use the AND operator `&&` or the OR operator `||` to check multiple conditions in a single if statement.
 ```
 int number = 10;
@@ -151,3 +152,58 @@ if (number != 9 && number != 11) {
 }
 ```
 As you can see this can help with cleaning up our code readability and effeciency.
+
+## Strings
+
+### Defining Strings
+Strings in C are just arrays of characters. We use a pointer, something I'll learn about later to define simple strings. These strings however can only be used for reading. They are defined like so:
+```
+char * name = "NitoTech";
+```
+If we wanted to define a string that we could manipulate we could use empty bracket notation `[]`. This notation tells the compiler to calculate the size of the array automatically. This is the same as if we specified it explicitly, adding one to the length of the string.
+```
+char name[] = "NitoTech";
+/* is the same as */
+char name[9];
+```
+The reason we have to add one to the total length of the string is for *string termination*.
+String termination is a special character (equal to 0) which indicates the end of the string. The end of the string is marked because the program does not know the length of the string - only the **compiler** knows it according to the code.
+
+### String formatting with printf
+We can use the `printf` command to format a string together with other strings.
+```
+char * name = "NitoTech";
+int age = 28;
+
+/* prints out 'NitoTech is 28 years old.' */
+printf("%s is %d years old.\n", name, age);
+```
+As you can see above we added a `%s` and `%d` into our `printf` string. This indicates that any variables specified after the comma will be added in their respective spots. `%s` stands for a string and `%d` stands for an integer.
+
+### String Methods
+We can use the function `strlen(var)` to return the length of a string.
+```
+char * name = "NitoTech";
+printf("%d\n",strlen(name));
+```
+
+We can use the function `strncmp(string, string, maximum comparison length)` to compare two strings. Returning 0 if they are equal, or a different number if they are different.
+```
+char * name = "Jack";
+
+if (strncmp(name, "Jack", 4) == 0) {
+  printf("Hello, Jack!\n");
+} else {
+  printf("You are not John. Go away. \n");
+}
+```
+
+We can use the function `strncat(destination string, source string, maximum number of character to append)`. To concatanate n characters of src string to the dest string.
+```
+char dest[20] = "Hello";
+char src[20] = "World";
+strncat(dest,src,3);
+printf("%s\n",dest);
+strncat(dest,src,20);
+printf("%s\n",dest);
+```
