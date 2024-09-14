@@ -12,6 +12,7 @@ I am currently learning C due to it's high use cases within reverse engineering.
 Below you can follow the notes I have taken on C while following **learn-c.org**'s tutorial series. I hope these notes can benefit you as well in your programming journey. Whether you are new to C just like me or an experienced programmer!
 
 ## The Basics of C
+-----
 ### File structure basics
 Every C program uses libraries, which give the ability to execute necessary functions. One of the most common functions you'll see is `printf`. This function prints text to the screen and required the `stdio.h` header file to run.
 
@@ -35,6 +36,7 @@ return 0;
 ```
 
 ## Variables and Types
+-----
 ### Data Types
 C has several types of variables, below are a few types of variables you may commonly see:
 - Integers - Whole numbers which can be either positive or negative. `char`, `int`, `short`, `long`, `long long`.
@@ -77,6 +79,7 @@ int main() {
 ```
 
 ## Arrays
+-----
 Arrays are special variables which hold more than one value under the same variable name.
 Defined using the syntax below, arrays are accessed by what's known as an **index**.
 ```
@@ -117,3 +120,4 @@ int a[2][4] = {
 If you then needed to access or edit one of these values you would go to the corresponding row and column like `a[0][3]` which would access the first row last column. Remember that when you use indexs the final index is less than the total size of the array.
 
 ## Conditions
+-----
