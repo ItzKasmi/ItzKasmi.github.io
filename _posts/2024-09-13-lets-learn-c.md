@@ -255,7 +255,7 @@ The `continue` directive skips a line of code.
 ## Functions
 C functions are simple, but because of how C works, the power of functions is a bit limited.
 - Functions receive either a fixed or variable amount of arguments.
-` Functions can only return on value, or return no value.
+- Functions can only return on value, or return no value.
 In C, arguments are copied by value to functions, which means that we cannot change the arguments to affect their value outside of the function. To do that we must use *pointers*.
 Functions are defined using the following Syntax:
 ```
