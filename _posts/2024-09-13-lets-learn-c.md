@@ -207,3 +207,85 @@ printf("%s\n",dest);
 strncat(dest,src,20);
 printf("%s\n",dest);
 ```
+## Loops
+### For Loops
+For loop in C give us the ability to create a loop or a code block that runs multiple times. For loops require an iterator variable, usually notated as `i`.
+
+For loops give the following functionality:
+- Initialize the iterator variable using an initial value.
+- Check if the iterator has reached its final value.
+- Increase the iterator
+
+```
+int i;
+for (i = 0; i < 10; i++) {
+  printf("%d\n", i);
+}
+```
+This loop will print the numbers 0 through 9. (10 print statements)
+We can use this same for loop to loop through an array to get a total sum.
+```
+int array[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+int sum = 0;
+int i;
+
+for (i = 0; i < 10; i++) {
+  sum += array[i];
+}
+
+printf("Sum of the array is %d\n", sum);
+```
+
+### While Loops
+While loops are similar to for loops but will continue to execute while the condition remains true.
+For example, this code will execute exactly ten times:
+```
+int n = 0;
+while (n < 10) {
+  n++;
+}
+```
+It is important to be careful with while loops. If a condition is set that would execute infinitely it can cause your program to break or crash.
+
+### Loop Directives
+There are two important loop directives that are used in conjunction with all loop types in C - the `break` and `continue` directives.
+The `break` directive halts a loop when the break line is ran.
+The `continue` directive skips a line of code.
+
+## Functions
+C functions are simple, but because of how C works, the power of functions is a bit limited.
+- Functions receive either a fixed or variable amount of arguments.
+` Functions can only return on value, or return no value.
+In C, arguments are copied by value to functions, which means that we cannot change the arguments to affect their value outside of the function. To do that we must use *pointers*.
+Functions are defined using the following Syntax:
+```
+int foo(int bar) {
+  /* do something */
+  return var * 2;
+}
+
+int main() {
+  foo(1);
+}
+```
+
+In C, functions must be first defined before they are used in code. They can be either declared first and then implemented later on using a header file ro in the beginning of the C file, or they can be implmented in the order they are used (less preferable).
+The correct way to use functions is as follows:
+```
+int foo(int bar);
+
+int main() {
+  /* calling foo from main */
+  printf("The value of foo is %d", foo(1));
+}
+
+int foo(int bar) {
+  return bar + 1;
+}
+```
+We can also create functions that do not return a value by using the keyword `void`:
+```
+void foo() {
+  /* do something */
+}
+```
