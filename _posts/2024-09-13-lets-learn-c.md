@@ -289,3 +289,58 @@ void foo() {
   /* do something */
 }
 ```
+
+## Static
+`static` is a keyword in the C programming language. It can be used with variables and functions.
+
+### Static vs Global?
+While static variables have scope over the file containg them making them accessible only inside a given file, global variables can be accessed outside the file too.
+
+### What is a static variable?
+By default, variables are local to the scope in which they are defined. Variables can be declared as static to increase their scope up to file containing them. As a result, these variable can be accessed anywhere inside a file.
+
+Consider these two examples:
+```
+#include<stdio.h>
+int student() {
+  int count = 0;
+  count++;
+  return count;
+}
+
+int main() {
+  printf("%d \n", student());
+  printf("%d \n", student());
+  return 0;
+}
+```
+In this example when we print our student function the result will be "1" each time.
+This is because the count variable is reset with every function ran. To fix this we can use the `static` keyword.
+```
+#include<stdio.h>
+int student() {
+  static int count = 0;
+  count++;
+  return count;
+}
+
+int main() {
+  printf("%d \n", student());
+  printf("%d \n", student());
+  return 0;
+}
+```
+With this, now when we get our print statements back we will receive 1 and 2.
+
+### What is a static function?
+By default, functions are *global* in C. If we declare a funciton with `static`, the scope of that function is reduced to the file containing it.
+
+The syntax looks like this:
+```
+static void fun(void) {
+  printf("I am a static function.");
+}
+```
+
+## Conclusion
+This concludes the basics of C taught through [**learn-c.org**](https://learn-c.org)'s tutorial series! I highly suggest you go and check out their website as they provide live exercises for you to try. I hope these notes can be used as a nice refresher or taught you something along the way. Goodluck on all your programming endeavors!
