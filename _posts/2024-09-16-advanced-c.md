@@ -122,3 +122,84 @@ mycar.model = 2007;
 ```
 
 ## Function Arguments by Reference
+If we understand that function arguments are passed by value, by which means they are compied in and out of functions. What if we pass pointers to values instead of the values themselves? This will allow us to give functions control over the variables and structures of the parent functions and not just a copy of them, thus directly reading and writing the original object.
+
+Lets say we want to write a function which increments a number by one, called `addone`. This will not work:
+```
+void addone(int n) {
+    // n is local variable which only exists within the function scope
+    n++; // therefore incrementing it has no effect
+}
+
+int n;
+printf("Before: %d\n", n);
+addone(n);
+printf("After: %d\n", n);
+```
+However, this will work:
+```
+void addone(int *n) {
+    // n is a pointer here which point to a memory-adress outside the function scope
+    (*n)++; // this will effectively increment the value of n
+}
+
+int n;
+printf("Before: %d\n", n);
+addone(&n);
+printf("After: %d\n", n);
+```
+The difference between these two code blocks is that in the second version of `addone`. The function receives a pointer to the variable `n` as an argument, and then it can manipulate it, because it knows where it is in memory.
+Notice that when we called the `addone` function, we **must** pass a reference to the variable `n` (`addone(&n)`), and not the variable itself - this is done so that the funciton knows the address of the variable, and won't just receive a copy of the variable itself.
+
+### Pointers to structures
+Let's say we want to create a function which moves a point forward in both `x` and `y` directions, called `move`. Instead of sending two pointers, we can send only one pointer to the function of the point structure:
+```
+void move(point * p) {
+    (*p).x++;
+    (*p).y++;
+}
+```
+However, if we wish to dereference a structure and access one of it's internal members, we have a shorthand syntax for that, because this operation is widely used in data structures. We can rewrite this function using the following syntax:
+```
+void move(point * p) {
+    p->x++;
+    p->y++;
+}
+```
+
+## Dynamic allocation
+Dynamic allocation allows us to build complex data structures such as linked lists. Allocating memory dynamically helps us to store data without initially knowing the size of the data in the time we wrote the program.
+
+To allocate a chunk of memory dynamically, we need to have a pointer ready to store the location of the newly allocated memory. We can access memory that was allocated to us using that same pointer, and we can use that pointer to free the memory again, once we have finished using it.
+
+Let's assume we want to dynamically allocate a person structure. The person is defined like this:
+```
+typedef struct {
+    char * name;
+    int age;
+} person;
+```
+To allocate a new person in the `myperson` argument, we use the following syntax;
+```
+person * myperson = (person *) malloc(sizeof(person));
+```
+This tells the compiler that we want to dynamically allocate just enough to hold a person struct in memory and then return a pointer of type `person` to the newly allocated data. The memory allocation function `malloc()` reserves the specified memory space. In this case, this is the size of `person` in bytes.
+
+The reason we write `(person *)` before the all to `malloc()` is that `malloc()` return a "void pointer", which is a pointer that doesn't have a type. Writing `(person *)` in front of it is called *typecasting*, and changes the type of the pointer return from `malloc()` to be `person`. However, it isn't strictly necessary to write it like this as C will implicitly convert the type of the return pointer to that of the pointer it is assigned to if you don't typecast it.
+
+Note that `sizeof` is not an actual function, because the compiler interprets it and translates it to the actual memory size of the person struct. 
+
+To access the person's members, we can use the `->` notation:
+```
+myperson->name = "John";
+myperson->age = 27;
+```
+
+After we are done using the dynamically allocated struct, we can release it using `free`:
+```
+free(myperson);
+```
+
+Note that the free does not delete the `myperson` variable itself, it simply releases the data that it points to. The `myperson` variable will still point to somewhere in memory - but after calling `myperson` we are not allowed to access that area naymore. We must not use that pointer again until we allocate new data using it.
+
+## Arrays and Pointers
